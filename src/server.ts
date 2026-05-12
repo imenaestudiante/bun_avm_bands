@@ -19,6 +19,10 @@ export const creareServer = () => {
     socket.on("chat", (msg)=> io.emit("chat", msg));
 })
 
+io.on("disconnect", (socket) => {
+  console.log(`Cliente desconectado': {socket.id}`);
+})
+
   const { fetch: engineFetch, websocket } = engine.handler();
 
   const server = Bun.serve({
